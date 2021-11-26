@@ -1,4 +1,4 @@
-
+import { useContext} from 'react';
 import { Dialog, withStyles, Box, Typography, makeStyles, ListItem, List } from "@material-ui/core";
 import { GoogleLogin } from 'react-google-login'
 
@@ -43,7 +43,7 @@ const Login = ({classes}) => {
     const clientId = '372606844993-muv8r0js8lh46kv2bksdks1cqsdomh5a.apps.googleusercontent.com';
 
     const onLoginSuccess = () => {
-        console.log('Login Successfull');
+        console.log('Login Successfull', res.profileObj);
     }
 
     const onLoginFailure = () => {
@@ -76,7 +76,6 @@ const Login = ({classes}) => {
                      isSignedIn={true}
                      onSuccess={onLoginSuccess}
                      onFailure={onLoginFailure}
-
                      cookiePolicy={'single_host_origin'}
                   />
              </Box>
