@@ -66,6 +66,7 @@ const Login = ({classes}) => {
                     <ListItem>3. Point your phone to this screen to capture the code</ListItem>
                 </List>
              </Box>
+
              {/* rightcomponent */}
              <Box>
                   <img src={qrurl} alt='qr' className= {classname.qrCode} />
@@ -76,7 +77,7 @@ const Login = ({classes}) => {
                      onSuccess={onLoginSuccess}
                      onFailure={onLoginFailure}
 
-                     cookiePolicy={'single-host-origin'}
+                     cookiePolicy={'single_host_origin'}
                   />
              </Box>
          </Box>
