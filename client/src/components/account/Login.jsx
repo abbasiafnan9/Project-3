@@ -1,6 +1,8 @@
 import { useContext} from 'react';
 import { Dialog, withStyles, Box, Typography, makeStyles, ListItem, List } from "@material-ui/core";
 import { GoogleLogin } from 'react-google-login'
+import { AccountContext } from '../../context/AccountProvider';
+
 
 const useStyles = makeStyles({
     component:{
@@ -41,9 +43,12 @@ const Login = ({classes}) => {
     const classname = useStyles();
     const qrurl = 'https://www.ginifab.com/feeds/qr_code/img/qrcode.jpg';
     const clientId = '372606844993-muv8r0js8lh46kv2bksdks1cqsdomh5a.apps.googleusercontent.com';
+    const { account, setAccount} = useContext(AccountContext); 
+    
 
     const onLoginSuccess = () => {
         console.log('Login Successfull', res.profileObj);
+        setAccount(res.profileObj);
     }
 
     const onLoginFailure = () => {

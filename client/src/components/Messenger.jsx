@@ -1,6 +1,7 @@
 
 import {AppBar, Toolbar, makeStyles, Box} from '@material-ui/core'
-import React from 'react';
+import React, {useContext} from 'react';
+import { AccountContext } from '../context/AccountProvider';
 
 import Login from './account/Login';
 
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
 
 const Messenger = ()  => {
     const classes = useStyles();
+    const{ account } = useContext(AccountContext)
  return (
      <Box className= {classes.component}>
     <AppBar className={classes.loginHeader}>
