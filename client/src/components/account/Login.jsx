@@ -33,7 +33,10 @@ const style = {
         marginTop: '12%',
         boxShadow: 'none',
         maxHeight: '100%',
-        maxWidth: '100%'
+        maxWidth: '100%',
+
+        // so that we dont get the scroll bar
+        overFlow: 'hidden'    
         
     }
 }
@@ -46,7 +49,7 @@ const Login = ({classes}) => {
     const { account, setAccount} = useContext(AccountContext); 
     
 
-    const onLoginSuccess = () => {
+    const onLoginSuccess = (res) => {
         console.log('Login Successfull', res.profileObj);
         setAccount(res.profileObj);
     }
@@ -73,16 +76,18 @@ const Login = ({classes}) => {
              </Box>
 
              {/* rightcomponent */}
-             <Box>
+             <Box style={{position: 'relative'}}>
                   <img src={qrurl} alt='qr' className= {classname.qrCode} />
-                  <GoogleLogin 
-                  clientId={clientId}
+                  <Box style={{position: 'absolute', left: '50%', top:'50%'}}>
+                   <GoogleLogin 
+                     clientId={clientId}
                      buttonText=""
                      isSignedIn={true}
                      onSuccess={onLoginSuccess}
                      onFailure={onLoginFailure}
                      cookiePolicy={'single_host_origin'}
                   />
+                  </Box>
              </Box>
          </Box>
        </Dialog>
