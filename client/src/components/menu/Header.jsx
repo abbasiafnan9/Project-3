@@ -25,7 +25,8 @@ const useStyles = makeStyles ({
           marginLeft: 'auto',
           '& > *': {
               marginLeft: 2,
-              padding: 8
+              padding: 8,
+              color: '#9191919'
           }
     }
 })
@@ -35,7 +36,7 @@ const Header = ()=> {
     const {account} = useContext(AccountContext);
     return(
         <Box className={classes.header}>
-            <img src={account.imageUrl} alt="display-picture" className={classes.avatar} />
+            <img src={account.imageUrl} alt="dp" className={classes.avatar} />
             <Box className={classes.icons}>
               <Chat/>
               <HeaderMenu/>
