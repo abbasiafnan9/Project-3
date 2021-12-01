@@ -10,7 +10,7 @@ import ChatBox from './ChatBox';
 
 const useStyles = makeStyles({
     component: {
-      backgroung: '#DCDCDC',
+      background: '#DCDCDC',
       height: '100vh'
     },
 
