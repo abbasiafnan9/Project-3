@@ -8,6 +8,8 @@ import {AccountContext} from '../../context/AccountProvider';
 import HeaderMenu from './HeaderMenu';
 import  Drawer from '../drawer/InfoDrawer';
 
+
+
 const useStyles = makeStyles ({
     header: {
         height: 35,
@@ -40,7 +42,6 @@ const Header = ()=> {
 
     const toggleDrawer = () => {
         setOpen(true);
-
     }
 
     return(
