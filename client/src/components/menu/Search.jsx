@@ -1,4 +1,4 @@
-import { alpha, Box, InputBase, makeStyles } from '@material-ui/core';
+import {  Box, InputBase, makeStyles } from '@material-ui/core';
 import { Search as SearchIcon} from '@material-ui/icons';
 
 const useStyles = makeStyles(theme =>({

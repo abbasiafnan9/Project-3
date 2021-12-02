@@ -1,7 +1,5 @@
 
-
-
-
+import { getUsers } from "../../service/api";
 
 const Conversations = ()=> {
     return(

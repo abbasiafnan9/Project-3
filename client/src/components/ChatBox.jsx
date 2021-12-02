@@ -40,15 +40,15 @@ const ChatBox = ({ classes }) => {
           open={true}
           classes={{paper: classes.dialogPaper}}
          >
-           <box className={classname.component}>
-               <box className={classname.leftComponent}>
+           <Box className={classname.component}>
+               <Box className={classname.leftComponent}>
                    <Menu />
 
-               </box>
-               <box className={classname.rightComponent}>
+               </Box>
+               <Box className={classname.rightComponent}>
 
-               </box>
-           </box>
+               </Box>
+           </Box>
         </Dialog>
 
     )

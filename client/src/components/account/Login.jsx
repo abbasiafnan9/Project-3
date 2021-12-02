@@ -3,7 +3,7 @@ import { Dialog, withStyles, Box, Typography, makeStyles, ListItem, List } from 
 import { GoogleLogin } from 'react-google-login'
 import { AccountContext } from '../../context/AccountProvider';
 import { clientId } from '../../constants/data'
-
+import { addUser } from '../../service/api';
 const useStyles = makeStyles({
     component:{
         display: 'flex'
@@ -49,9 +49,10 @@ const Login = ({classes}) => {
     const { account, setAccount} = useContext(AccountContext); 
     
 
-    const onLoginSuccess = (res) => {
+    const onLoginSuccess = async (res) => {
         console.log('Login Successfull', res.profileObj);
         setAccount(res.profileObj);
+        await addUser(res.profileObj);
     }
 
     const onLoginFailure = () => {
