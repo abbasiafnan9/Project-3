@@ -23,7 +23,7 @@ export const addUser = async (request,response) => {
 
 export const getUsers = async (request, response) => {
     try {
-      const users = await Users.find({});
+      const users = await User.find({});
       response.status(200).json(users);
     } catch (error) {
         response.status(500).json(error);
