@@ -3,7 +3,7 @@ import { Box, Typography, makeStyles} from '@material-ui/core';
 import { useContext } from 'react';
 import { AccountContext} from '../../context/AccountProvider';
 import { UserContext } from '../../context/UserProvider';
-import {setConversation } from '../../service/api'
+import { setConversation } from '../../service/api'
 
 const useStyles = makeStyles ({
     component:{
@@ -29,6 +29,7 @@ const Conversation = ({ user }) => {
     const { setPerson } = useContext(UserContext);
 
     const setUser = async () => {
+        setPerson(user);
        await setConversation({ senderId: account.googleId, receiverId: user.googleId });
     }
 
