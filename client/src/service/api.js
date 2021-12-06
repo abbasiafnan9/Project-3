@@ -44,8 +44,7 @@ export const setConversation = async (data) => {
 
 export const getMessages = async (id) => {
     try {
-        let response = await axios.get(`${URL}/message/get/${id}`);
-        return response.data
+       return await axios.get(`${URL}/message/get/${id}`);
     } catch (error) {
         console.log('Error while calling getMessages API ', error);
     }

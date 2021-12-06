@@ -3,6 +3,7 @@ import { Box, makeStyles } from '@material-ui/core';
 import { AccountContext } from '../context/AccountProvider';
 import { newMessage, getMessages } from '../service/api';
 import Footer from './Footer';
+import Message from './Message';
 
 const useStyles = makeStyles({
     wrapper: {
@@ -11,6 +12,10 @@ const useStyles = makeStyles({
     },
     component: {
         height: '79vh'
+    },
+    container: {
+        padding: '1px 75px'
+
     }
 });
 
@@ -18,12 +23,15 @@ const Messages = ({ conversation }) => {
     const classes = useStyles();
 
     const [value, setValue] = useState();
+    const [messages, setMessages] = useState([]);
 
     const { account } = useContext(AccountContext);
 
     useEffect(() => {
         const getMessageDetails = async () => {
-            await getMessages(conversation._id);
+           let response= await getMessages(conversation._id);
+           console.log(response);
+           setMessages(response.data);
         }
         getMessageDetails();
     }, [conversation?._id])
@@ -51,7 +59,13 @@ const Messages = ({ conversation }) => {
         
        <Box className={classes.wrapper}>
            <Box className={classes.component}>
-           Hello
+           {
+               messages && messages.map(message => (
+                   <Box className={classes.container}>
+                       <Message message={message} />
+                   </Box>
+               ))
+           }
            </Box>
            <Footer sendText={sendText} setValue={setValue} value={value}/>
        </Box>

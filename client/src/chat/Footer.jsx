@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
         height: '55px',
         background: '#ededed',
         // position: 'absolute',
-        width: '100%',
+        width: '98%',
         bottom: 0,
         display: 'flex',
         alignItems: 'center',
