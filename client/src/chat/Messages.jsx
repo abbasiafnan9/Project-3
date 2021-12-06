@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import { Box, makeStyles } from '@material-ui/core';
 
 import Footer from './Footer';
@@ -13,15 +13,28 @@ const useStyles = makeStyles({
     }
 });
 
-const Messages = () => {
+const Messages = ({ conversation }) => {
     const classes = useStyles();
+
+    const [value, setValue] = useState();
+
+    const sendText = (e) => {
+            let code = e.keyCode || e.which
+            console.log(value)
+            if(!value)return;
+
+            if(code === 13) {
+
+            }
+     }
+
     return ( 
         
        <Box className={classes.wrapper}>
            <Box className={classes.component}>
            Hello
            </Box>
-           <Footer />
+           <Footer sendText={sendText} setValue={setValue} value={value}/>
        </Box>
       
     )

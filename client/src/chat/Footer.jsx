@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+// Object destructuring
 
 const Footer = ({ sendText, value, setValue }) => {
     const classes = useStyles();
@@ -59,6 +60,7 @@ const Footer = ({ sendText, value, setValue }) => {
                     inputProps={{ 'aria-label': 'search' }}
                     onChange={(e) => setValue(e.target.value)}
                     onKeyPress={(e) => sendText(e)}
+                    // controlled component
                     value={value}
                 />
             </Box>

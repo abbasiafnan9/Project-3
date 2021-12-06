@@ -22,3 +22,13 @@ export const newConversation = async (request, response ) => {
         response.status(500).json(error);
     }
 }
+
+export const getConversation = async (request, response) => {
+    try {
+        const conversation = await Conversation.findOne({ members: { $all: [ request.body.sender, request.body.receiver] }});
+        response.status(200).json(conversation);
+    } catch (error) {
+        response.status(500).json(error);
+    }
+
+}
