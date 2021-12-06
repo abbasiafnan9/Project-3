@@ -51,10 +51,10 @@ export const setConversation = async (data) => {
 //     }
 // }
 
-// export const newMessages = async (data) => {
-//     try {
-//         return await axios.post(`${URL}/message/add`, data);
-//     } catch (error) {
-//         console.log('Error while calling newConversations API ', error);
-//     }
-// }
+export const newMessage = async (data) => {
+    try {
+        return await axios.post(`${URL}/message/add`, data);
+    } catch (error) {
+        console.log('Error while calling newConversations API ', error);
+    }
+}

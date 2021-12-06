@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Box, makeStyles } from '@material-ui/core';
-
+import { AccountContext } from '../context/AccountProvider';
+import { newMessage } from '../service/api';
 import Footer from './Footer';
 
 const useStyles = makeStyles({
@@ -18,16 +19,26 @@ const Messages = ({ conversation }) => {
 
     const [value, setValue] = useState();
 
-    const sendText = (e) => {
+    const { account } = useContext(AccountContext);
+
+    const sendText = async (e) => {
             let code = e.keyCode || e.which
             console.log(value)
             if(!value)return;
 
             if(code === 13) {
+                let message = {
+                    sender: account.googleId,
+                    conversationId: conversation._id,
+                    text: value
 
             }
+
+            await newMessage(message);
      }
 
+    }
+    
     return ( 
         
        <Box className={classes.wrapper}>
@@ -38,7 +49,7 @@ const Messages = ({ conversation }) => {
        </Box>
       
     )
-}
+    }
 
 export default Messages;
 
