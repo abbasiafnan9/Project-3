@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Box, makeStyles } from '@material-ui/core';
 import { AccountContext } from '../context/AccountProvider';
-import { newMessage } from '../service/api';
+import { newMessage, getMessages } from '../service/api';
 import Footer from './Footer';
 
 const useStyles = makeStyles({
@@ -21,6 +21,13 @@ const Messages = ({ conversation }) => {
 
     const { account } = useContext(AccountContext);
 
+    useEffect(() => {
+        const getMessageDetails = async () => {
+            await getMessages(conversation._id);
+        }
+        getMessageDetails();
+    }, [conversation?._id])
+
     const sendText = async (e) => {
             let code = e.keyCode || e.which
             console.log(value)
@@ -35,6 +42,7 @@ const Messages = ({ conversation }) => {
             }
 
             await newMessage(message);
+            setValue('');
      }
 
     }
