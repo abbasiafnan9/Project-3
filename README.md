@@ -1,3 +1,4 @@
+
 # DevApp
 A chatting app especially made for developers.
 
@@ -18,7 +19,8 @@ The motiviation behind this project was to provide an interactive app for develo
 - This is your profile page
 
 
-
+![db1](https://user-images.githubusercontent.com/86696292/145002275-1c977a10-359d-4488-9815-83f11b3fd88d.PNG)
+### Database Looks like this with 3 collections in it
 
 ## Techs used:
 - Express
