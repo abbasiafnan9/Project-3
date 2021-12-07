@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 
+// const URL =`${process.env.PUBLIC_URL}:${process.env.PORT}` || 'http://localhost:8000';
 const URL = 'http://localhost:8000';
 
 export const addUser = async (data) => {
