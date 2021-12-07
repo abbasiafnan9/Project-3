@@ -71,6 +71,16 @@ app.use(bodyParser.json({extended: true}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', Routes);
 
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+  }
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+
+  
 const PORT = process.env.PORT || 8000;
 const username = process.env.MONGO_USERNAME;
 const password = process.env.MONGO_PASSWORD;
