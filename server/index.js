@@ -8,6 +8,8 @@ import Connection from './database/db.js';
 import { Server } from 'socket.io';
 
 import  http  from 'http';
+import path from 'path';
+
 
 const app = express();
 const server = http.createServer(app);
@@ -80,7 +82,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 
-  
+
 const PORT = process.env.PORT || 8000;
 const username = process.env.MONGO_USERNAME;
 const password = process.env.MONGO_PASSWORD;
