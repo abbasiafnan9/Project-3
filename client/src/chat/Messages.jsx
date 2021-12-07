@@ -11,7 +11,8 @@ const useStyles = makeStyles({
         backgroundSize: '50%'
     },
     component: {
-        height: '79vh'
+        height: '79vh',
+        overflowY: 'scroll'
     },
     container: {
         padding: '1px 75px'
@@ -19,22 +20,40 @@ const useStyles = makeStyles({
     }
 });
 
-const Messages = ({ conversation }) => {
+const Messages = ({ person, conversation }) => {
     const classes = useStyles();
 
     const [value, setValue] = useState();
     const [messages, setMessages] = useState([]);
+    const [incomingMessage, setIncomingMessage] = useState(null);
 
-    const { account } = useContext(AccountContext);
+    const { account, socket, newMessageFlag, setNewMessageFlag } = useContext(AccountContext);
+
+    useEffect(() => {
+        socket.current.on('getMessage', data => {
+            setIncomingMessage({
+                sender: data.senderId,
+                text: data.text,
+                createdAt: Date.now()
+            })
+        })
+    },[])
+
+    useEffect(() => {
+      incomingMessage && conversation?.members?.includes(incomingMessage.sender) &&
+            setMessages(prev => [...prev,incomingMessage])
+    },[incomingMessage, conversation])
 
     useEffect(() => {
         const getMessageDetails = async () => {
-           let response= await getMessages(conversation._id);
+           let response = await getMessages(conversation._id);
            console.log(response);
            setMessages(response.data);
         }
         getMessageDetails();
-    }, [conversation?._id])
+    }, [conversation?._id, person._id, newMessageFlag])
+
+    const receiverId = conversation?.members?.find(member => member !==account.googleId);
 
     const sendText = async (e) => {
             let code = e.keyCode || e.which
@@ -46,11 +65,18 @@ const Messages = ({ conversation }) => {
                     sender: account.googleId,
                     conversationId: conversation._id,
                     text: value
-
             }
+
+            socket.current.emit('sendMessage', {
+                senderId: account.googleId,
+                receiverId,
+                text: value
+
+            })
 
             await newMessage(message);
             setValue('');
+            setNewMessageFlag(prev => !prev);
      }
 
     }
